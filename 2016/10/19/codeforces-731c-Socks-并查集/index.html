@@ -3,19 +3,19 @@
 <head>
   <meta charset="utf-8" />
   
-  <title>codeforces-710E-Generate a string-基础dp | ctr&#39;s blog</title>
+  <title>codeforces-731c-Socks-并查集 | ctr&#39;s blog</title>
   <meta name="author" content="ctr" />
 
   
-  <meta name="description" content="题意：让你生成一个长度为n的字符串，字符串仅包含字母a，已知单独输入或删除一个字符的时间为x，复制当前串并粘贴的时间为y,现让你求最短需要多长时间才能生成
-思路：最基础的dp,考虑当前字符为2k的情况，那么只有两种转移，一个是复制k长度的字符，一个是从2k-1添加。当前字符为2k+1的情况时，有三种情况，一个是从2k转移，一个是从k乘2加1转移，最后一个是从（k+1）乘2减1转移。" />
+  <meta name="description" content="题目链接
+题意：现在有n只袜子，每只袜子有一个颜色，总共有k种颜色，你可以改变一些袜子的颜色。现在有m天要穿袜子，给出m天穿的袜子序号，现让你最少的改变一些袜子的颜色，让m天中任意一天穿的都是颜色相同的袜子。" />
   
 
   
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-  <meta property="og:title" content="codeforces-710E-Generate a string-基础dp" />
+  <meta property="og:title" content="codeforces-731c-Socks-并查集" />
   <meta property="og:site_name" content="ctr&#39;s blog" />
 
   
@@ -64,47 +64,43 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2016-08-23T15:00:16.000Z"><a href="/2016/08/23/codeforces-710E-Generate-a-string-dp/">2016-08-23</a></time>
+        <time datetime="2016-10-19T14:16:46.000Z"><a href="/2016/10/19/codeforces-731c-Socks-并查集/">2016-10-19</a></time>
       
       
   
-    <h1 class="title">codeforces-710E-Generate a string-基础dp</h1>
+    <h1 class="title">codeforces-731c-Socks-并查集</h1>
   
 
     </header>
     <div class="entry">
       
-        <p>题意：让你生成一个长度为n的字符串，字符串仅包含字母a，已知单独输入或删除一个字符的时间为x，复制当前串并粘贴的时间为y,现让你求最短需要多长时间才能生成</p>
-<p>思路：最基础的dp,考虑当前字符为2k的情况，那么只有两种转移，一个是复制k长度的字符，一个是从2k-1添加。当前字符为2k+1的情况时，有三种情况，一个是从2k转移，一个是从k乘2加1转移，最后一个是从（k+1）乘2减1转移。</p>
+        <p><a href="http://codeforces.com/contest/731/problem/C" title="题目链接" target="_blank" rel="external">题目链接</a></p>
+<p>题意：现在有n只袜子，每只袜子有一个颜色，总共有k种颜色，你可以改变一些袜子的颜色。现在有m天要穿袜子，给出m天穿的袜子序号，现让你最少的改变一些袜子的颜色，让m天中任意一天穿的都是颜色相同的袜子。</p>
 <a id="more"></a>
-<p>E. Generate a String<br>time limit per test2 seconds<br>memory limit per test512 megabytes<br>inputstandard input<br>outputstandard output<br>zscoder wants to generate an input file for some programming competition problem.</p>
-<p>His input is a string consisting of n letters ‘a’. He is too lazy to write a generator so he will manually generate the input in a text editor.</p>
-<p>Initially, the text editor is empty. It takes him x seconds to insert or delete a letter ‘a’ from the text file and y seconds to copy the contents of the entire text file, and duplicate it.</p>
-<p>zscoder wants to find the minimum amount of time needed for him to create the input file of exactly n letters ‘a’. Help him to determine the amount of time needed to generate the input.</p>
-<p>Input<br>The only line contains three integers n, x and y (1 ≤ n ≤ 107, 1 ≤ x, y ≤ 109) — the number of letters ‘a’ in the input file and the parameters from the problem statement.</p>
-<p>Output<br>Print the only integer t — the minimum amount of time needed to generate the input file.</p>
-<p>Examples<br>input<br>8 1 1<br>output<br>4<br>input<br>8 1 10<br>output<br>8</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">long</span> <span class="keyword">long</span> dp[<span class="number">10000007</span>];</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">   <span class="keyword">long</span> <span class="keyword">long</span> sum,x,y;</div><div class="line">   <span class="keyword">long</span> <span class="keyword">long</span> n;</div><div class="line">   <span class="built_in">scanf</span>(<span class="string">"%lld%lld%lld"</span>,&amp;n,&amp;x,&amp;y);</div><div class="line">   dp[<span class="number">0</span>]=<span class="number">0</span>;</div><div class="line">   dp[<span class="number">1</span>]=x;</div><div class="line">   <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=n;i++)</div><div class="line">   &#123;</div><div class="line">   	<span class="keyword">if</span>(i%<span class="number">2</span>==<span class="number">0</span>)dp[i]=min(dp[i/<span class="number">2</span>]+y,dp[i<span class="number">-1</span>]+x);</div><div class="line">   	<span class="keyword">else</span></div><div class="line">   	&#123;</div><div class="line">   	 <span class="keyword">long</span> <span class="keyword">long</span> temp1=dp[i/<span class="number">2</span>]+y+x;</div><div class="line">   	 <span class="keyword">long</span> <span class="keyword">long</span> temp2=dp[i/<span class="number">2</span>+<span class="number">1</span>]+y+x;</div><div class="line">   	 dp[i]=min(dp[i<span class="number">-1</span>]+x,temp1);</div><div class="line">   	 dp[i]=min(dp[i],temp2);</div><div class="line">	   </div><div class="line">	&#125;</div><div class="line">   &#125;</div><div class="line">   <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,dp[n]);</div><div class="line">   <span class="keyword">return</span> <span class="number">0</span>;   	</div><div class="line"> &#125; </div></pre></td></tr></table></figure>
+<p>思路：一开始还在想是不是跟b一样贪心，后来发现就是个裸的并查集……将所有要搭配穿的袜子并在一起，然后求每个集合里的袜子总数减去最多的颜色的袜子数就行了。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;map&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">int</span> fa[<span class="number">200002</span>];</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> x)</span></span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">if</span>(x==fa[x])<span class="keyword">return</span> x;</div><div class="line">	 <span class="keyword">else</span> <span class="keyword">return</span> fa[x]=find(fa[x]);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">un</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">int</span> a=find(x);</div><div class="line">	<span class="keyword">int</span> b=find(y);</div><div class="line">	<span class="keyword">if</span>(a==b)<span class="keyword">return</span>;</div><div class="line">	  <span class="keyword">else</span></div><div class="line">	  &#123;</div><div class="line">	  	fa[a]=b;</div><div class="line">	  &#125;</div><div class="line">	<span class="comment">//a=find(x);  </span></div><div class="line">&#125;</div><div class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span> &gt; g[<span class="number">200002</span>];</div><div class="line"> <span class="built_in">map</span>&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; f;</div><div class="line"><span class="keyword">int</span> num[<span class="number">200002</span>];</div><div class="line"><span class="keyword">int</span> gen[<span class="number">200002</span>];</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;  </div><div class="line">	</div><div class="line">	<span class="keyword">int</span> i,j,k,m,n;</div><div class="line">	<span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;n,&amp;m,&amp;k);</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</div><div class="line">	&#123;</div><div class="line">		<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;num[i]);</div><div class="line">	    fa[i]=i;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;i++)</div><div class="line">	&#123;</div><div class="line">		<span class="keyword">int</span> x,y;</div><div class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;x,&amp;y);</div><div class="line">	    un(x,y);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">int</span> cnt=<span class="number">0</span>;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</div><div class="line">	<span class="keyword">if</span>(fa[i]!=i)</div><div class="line">	&#123;   <span class="comment">//printf("ye:%d gen:%d\n",i,find(i));</span></div><div class="line">		<span class="keyword">int</span> fath=find(i);</div><div class="line">		g[fath].push_back(i);</div><div class="line">		<span class="comment">//printf("size:%d\n",g[fa[i]].size());</span></div><div class="line">	&#125;</div><div class="line">	<span class="keyword">long</span> <span class="keyword">long</span> ans=<span class="number">0</span>;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</div><div class="line">	<span class="keyword">if</span>(fa[i]==i)</div><div class="line">	&#123;   f.clear();</div><div class="line">		<span class="keyword">int</span> l=g[fa[i]].size();</div><div class="line">		<span class="keyword">int</span> max=<span class="number">1</span>;</div><div class="line">		f[num[i]]++;</div><div class="line">		<span class="comment">//printf("gen：%d\n  size:%d\n",i,l);</span></div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;l;j++)</div><div class="line">		 &#123;</div><div class="line">		 	<span class="comment">//printf("%d\n",g[i][j]);</span></div><div class="line">		 	f[num[g[fa[i]][j]]]++;</div><div class="line">		 	<span class="keyword">if</span>(f[num[g[fa[i]][j]]]&gt;max)max=f[num[g[fa[i]][j]]];</div><div class="line">		 &#125;</div><div class="line">		ans+=l+<span class="number">1</span>-max; </div><div class="line">	&#125;</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,ans);</div><div class="line"> &#125; </div><div class="line"></div></pre></td></tr></table></figure>
+<p>哎，合肥现场赛打铁，感觉有很多想说的，下篇博客里写吧……</p>
+
       
     </div>
     
     <footer>
         <div class="alignright">
           
-          <a href="/2016/08/23/codeforces-710E-Generate-a-string-dp/#comment" class="comment-link">评论</a>
+          <a href="/2016/10/19/codeforces-731c-Socks-并查集/#comment" class="comment-link">评论</a>
           
           <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
         </div>
         
   
   <div class="categories">
-    <a href="/categories/dp/">dp</a>
+    <a href="/categories/并查集/">并查集</a>
   </div>
 
         
   
   <div class="tags">
-    <a href="/tags/codeforces/">codeforces</a>, <a href="/tags/dp/">dp</a>
+    <a href="/tags/codeforces/">codeforces</a>, <a href="/tags/并查集/">并查集</a>
   </div>
 
         <!-- partial('post/share') -->
@@ -118,7 +114,7 @@
   <h1 class="title">留言</h1>
 
   <!-- 多说评论框 start -->
-  <div class="ds-thread" data-thread-key="post-codeforces-710E-Generate-a-string-dp" data-title="codeforces-710E-Generate a string-基础dp" data-url="http://ctrasd.github.io/2016/08/23/codeforces-710E-Generate-a-string-dp/"></div>
+  <div class="ds-thread" data-thread-key="post-codeforces-731c-Socks-并查集" data-title="codeforces-731c-Socks-并查集" data-url="http://ctrasd.github.io/2016/10/19/codeforces-731c-Socks-并查集/"></div>
   <!-- 多说评论框 end -->
   <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
   <script type="text/javascript">
