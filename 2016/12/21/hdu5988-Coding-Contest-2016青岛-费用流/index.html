@@ -1,0 +1,322 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8" />
+  
+  <title>hdu5988 Coding Contest 2016青岛 费用流 | ctr&#39;s blog</title>
+  <meta name="author" content="ctr" />
+
+  
+  <meta name="description" content="大雾霾天，不想出去……好久没写博客了，最近好懒呀……数分大物即将挂科……含参量积分简直就是噩梦……大物什么都记不得……补了一下青岛的网络流，对图论完全无能的我只能抄题解了（还好当时没去青岛，去的北京，要不然又要打铁了……）……算是当做费用流的模板题吧……" />
+  
+
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+  <meta property="og:title" content="hdu5988 Coding Contest 2016青岛 费用流" />
+  <meta property="og:site_name" content="ctr&#39;s blog" />
+
+  
+  
+
+  
+    <meta property="og:image" content="undefined" />
+  
+
+  
+  <link href="/css/images/favicon.ico" rel="icon" />
+  
+
+  <link rel="alternate" href="/atom.xml" title="ctr&#39;s blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">ctr&#39;s blog</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">主页</a></li>
+    
+      <li><a href="/archives">归档</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-12-21T03:43:41.000Z"><a href="/2016/12/21/hdu5988-Coding-Contest-2016青岛-费用流/">2016-12-21</a></time>
+      
+      
+  
+    <h1 class="title">hdu5988 Coding Contest 2016青岛 费用流</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>大雾霾天，不想出去……<br>好久没写博客了，最近好懒呀……数分大物即将挂科……含参量积分简直就是噩梦……大物什么都记不得……<br>补了一下青岛的网络流，对图论完全无能的我只能抄题解了（还好当时没去青岛，去的北京，要不然又要打铁了……）……算是当做费用流的模板题吧……<br><a id="more"></a></p>
+<p>题意：有n个节点，每个节点会有面包数和人数，如果面包不够当前节点的人吃的话就要到别的节点去，在图上走的时候，一条边第一个人不会破坏道路，但是后面的人走的时候会有几率破坏掉这条边，问所有人都吃到面包的前提下，图被破坏掉的几率有多大</p>
+<p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=5988" title="题目链接" target="_blank" rel="external">题目链接</a></p>
+<p>思路：正常是想到最小费用流，将所有面包多的点连向超级汇点，人多的点连向超级源，跑一下最小费用最大流。但是本题的费用是概率，不能加减，要先对概率取log,最后在乘回来，这样就能将概率进行加减了（orz，这个真的好难想到）……被剧透了这题spfa不加eps会T，也就这样吧……<br>一开始addedge的参数cost写成int型wa了好几次……minn的值取小了又T了一次，真的要完了……</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">int</span> INF=<span class="number">2e9</span>;</div><div class="line"><span class="keyword">double</span> eps=<span class="number">1e-9</span>;</div><div class="line"><span class="keyword">struct</span> Edge</div><div class="line">&#123;</div><div class="line">	<span class="keyword">int</span> to,next,cap,flow;</div><div class="line">	<span class="keyword">double</span> cost;</div><div class="line">&#125;edge[<span class="number">100005</span>];</div><div class="line"></div><div class="line"><span class="keyword">int</span> head[<span class="number">10004</span>],tol;</div><div class="line"><span class="keyword">int</span> pre[<span class="number">10004</span>];</div><div class="line"><span class="keyword">double</span> dis[<span class="number">10004</span>];</div><div class="line"><span class="keyword">int</span> vis[<span class="number">10004</span>];</div><div class="line"><span class="keyword">int</span> N;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">addedge</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> v,<span class="keyword">int</span> cap,<span class="keyword">double</span> cost)</span></span></div><div class="line">&#123;</div><div class="line">	edge[tol].to=v;</div><div class="line">	edge[tol].cap=cap;</div><div class="line">	edge[tol].cost=cost;</div><div class="line">	edge[tol].flow=<span class="number">0</span>;</div><div class="line">	edge[tol].next=head[u];</div><div class="line">	head[u]=tol++;</div><div class="line">	edge[tol].to=u;</div><div class="line">	edge[tol].cap=<span class="number">0</span>;</div><div class="line">	edge[tol].flow=<span class="number">0</span>;</div><div class="line">	edge[tol].cost=-cost;</div><div class="line">	edge[tol].next=head[v];</div><div class="line">	head[v]=tol++;	</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">spfa</span><span class="params">(<span class="keyword">int</span> s,<span class="keyword">int</span> t)</span></span></div><div class="line">&#123;</div><div class="line">	<span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; q;</div><div class="line">	<span class="keyword">while</span>(!q.empty())q.pop();</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;N;i++)</div><div class="line">	&#123;</div><div class="line">		dis[i]=INF;</div><div class="line">		vis[i]=<span class="number">0</span>;</div><div class="line">		pre[i]=<span class="number">-1</span>;</div><div class="line">	&#125;</div><div class="line">	dis[s]=<span class="number">0</span>;</div><div class="line">	vis[s]=<span class="number">1</span>;</div><div class="line">	q.push(s);</div><div class="line">	<span class="keyword">while</span>(!q.empty())</div><div class="line">	&#123;</div><div class="line">		<span class="keyword">int</span> u=q.front();</div><div class="line">		q.pop(); </div><div class="line">		vis[u]=<span class="number">0</span>;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=head[u];i!=<span class="number">-1</span>;i=edge[i].next)</div><div class="line">		&#123;</div><div class="line">			<span class="keyword">int</span> v=edge[i].to;</div><div class="line">			<span class="keyword">if</span>(edge[i].cap&gt;edge[i].flow &amp;&amp; dis[v]-dis[u]-edge[i].cost&gt;eps)</div><div class="line">			&#123;</div><div class="line">				dis[v]=dis[u]+edge[i].cost;</div><div class="line">				pre[v]=i;</div><div class="line">				<span class="keyword">if</span>(!vis[v])</div><div class="line">				&#123;</div><div class="line">					vis[v]=<span class="number">1</span>;</div><div class="line">					q.push(v);</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">			</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span>(pre[t]==<span class="number">-1</span>)<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">	<span class="keyword">else</span> <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">mcmf</span><span class="params">(<span class="keyword">int</span> s,<span class="keyword">int</span> t,<span class="keyword">double</span> &amp;cost)</span></span></div><div class="line">&#123;</div><div class="line">  <span class="keyword">int</span> flow=<span class="number">0</span>;	</div><div class="line">  cost=<span class="number">0</span>;</div><div class="line">  <span class="keyword">while</span>(spfa(s,t))</div><div class="line">  &#123;</div><div class="line">  	<span class="comment">//printf("spfa\n");</span></div><div class="line">  	<span class="keyword">int</span> minn=INF;</div><div class="line">  	<span class="keyword">for</span>(<span class="keyword">int</span> i=pre[t];i!=<span class="number">-1</span>;i=pre[edge[i^<span class="number">1</span>].to])</div><div class="line">  	&#123;</div><div class="line">  		<span class="keyword">if</span>(minn&gt;edge[i].cap-edge[i].flow)</div><div class="line">  		 minn=edge[i].cap-edge[i].flow;</div><div class="line">	  &#125;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=pre[t];i!=<span class="number">-1</span>;i=pre[edge[i^<span class="number">1</span>].to])</div><div class="line">	 &#123;</div><div class="line">	 	edge[i].flow+=minn;</div><div class="line">	 	edge[i^<span class="number">1</span>].flow-=minn;</div><div class="line">	 	cost+=edge[i].cost*minn;</div><div class="line">	 &#125;   </div><div class="line">	 flow+=minn;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> flow;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">int</span> a[<span class="number">10004</span>],b[<span class="number">10004</span>],c[<span class="number">10004</span>];</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123; <span class="keyword">int</span> m,n;</div><div class="line">	<span class="keyword">int</span> t;</div><div class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;t);</div><div class="line">	<span class="keyword">while</span>(t--)</div><div class="line">	&#123;</div><div class="line">		<span class="built_in">memset</span>(head,<span class="number">-1</span>,<span class="keyword">sizeof</span>(head));</div><div class="line">		tol=<span class="number">0</span>;</div><div class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;m);</div><div class="line">		</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</div><div class="line">		&#123;</div><div class="line">			<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;a[i],&amp;b[i]);</div><div class="line">			c[i]=a[i]-b[i];</div><div class="line">		&#125;</div><div class="line">		N=n+<span class="number">10</span>;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;m;i++)</div><div class="line">		&#123;</div><div class="line">			<span class="keyword">double</span> cost;</div><div class="line">			<span class="keyword">int</span> u,v,cap;</div><div class="line">			<span class="built_in">scanf</span>(<span class="string">"%d%d%d%lf"</span>,&amp;u,&amp;v,&amp;cap,&amp;cost);</div><div class="line">		    cost=-log2(<span class="number">1.0</span>-cost);</div><div class="line">		    <span class="comment">//printf("%f\n",cost);</span></div><div class="line">		    <span class="keyword">if</span>(cap&gt;<span class="number">0</span>)addedge(u,v,<span class="number">1</span>,<span class="number">0.0</span>);</div><div class="line">		    <span class="keyword">if</span>(cap&gt;<span class="number">1</span>)addedge(u,v,cap<span class="number">-1</span>,cost);</div><div class="line">		&#125;</div><div class="line">		<span class="comment">//for(int i=0;i&lt;5;i++)</span></div><div class="line">		<span class="comment">//printf("cost:%f\n",edge[i].cost);</span></div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</div><div class="line">		&#123;</div><div class="line">			<span class="keyword">if</span>(c[i]&gt;<span class="number">0</span>)addedge(<span class="number">0</span>,i,c[i],<span class="number">0</span>);</div><div class="line">			<span class="keyword">if</span>(c[i]&lt;<span class="number">0</span>)addedge(i,n+<span class="number">1</span>,-c[i],<span class="number">0</span>); </div><div class="line">		&#125;</div><div class="line">		<span class="keyword">double</span> ans=<span class="number">0</span>;</div><div class="line">		mcmf(<span class="number">0</span>,n+<span class="number">1</span>,ans);</div><div class="line">		ans=<span class="built_in">pow</span>(<span class="number">2.0</span>,-ans);</div><div class="line">		<span class="built_in">printf</span>(<span class="string">"%.2f\n"</span>,<span class="number">1.0</span>-ans);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line"> &#125; </div></pre></td></tr></table></figure>
+      
+    </div>
+    
+    <footer>
+        <div class="alignright">
+          
+          <a href="/2016/12/21/hdu5988-Coding-Contest-2016青岛-费用流/#comment" class="comment-link">评论</a>
+          
+          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
+        </div>
+        
+  
+  <div class="categories">
+    <a href="/categories/图论/">图论</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/费用流/">费用流</a>, <a href="/tags/建图/">建图</a>
+  </div>
+
+        <!-- partial('post/share') -->
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">留言</h1>
+
+  <!-- 多说评论框 start -->
+  <div class="ds-thread" data-thread-key="post-hdu5988-Coding-Contest-2016青岛-费用流" data-title="hdu5988 Coding Contest 2016青岛 费用流" data-url="http://ctrasd.github.io/2016/12/21/hdu5988-Coding-Contest-2016青岛-费用流/"></div>
+  <!-- 多说评论框 end -->
+  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+  <script type="text/javascript">
+  var duoshuoQuery = {short_name:'ctr'};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+       || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+  <!-- 多说公共JS代码 end -->
+
+</section>
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:ctrasd.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/dp/">dp</a><small>4</small></li>
+  
+    <li><a href="/categories/单调栈/">单调栈</a><small>1</small></li>
+  
+    <li><a href="/categories/博客建设/">博客建设</a><small>1</small></li>
+  
+    <li><a href="/categories/图论/">图论</a><small>1</small></li>
+  
+    <li><a href="/categories/并查集/">并查集</a><small>1</small></li>
+  
+    <li><a href="/categories/感想/">感想</a><small>1</small></li>
+  
+    <li><a href="/categories/数学/">数学</a><small>1</small></li>
+  
+    <li><a href="/categories/数论/">数论</a><small>4</small></li>
+  
+    <li><a href="/categories/杂记/">杂记</a><small>1</small></li>
+  
+    <li><a href="/categories/树/">树</a><small>2</small></li>
+  
+    <li><a href="/categories/线段树/">线段树</a><small>1</small></li>
+  
+    <li><a href="/categories/线段树-树状数组/">线段树/树状数组</a><small>1</small></li>
+  
+    <li><a href="/categories/莫队/">莫队</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">最新文章</h3>
+  <ul class="entry">
+    
+      <li>
+        <a href="/2016/12/21/hdu5988-Coding-Contest-2016青岛-费用流/">hdu5988 Coding Contest 2016青岛 费用流</a>
+      </li>
+    
+      <li>
+        <a href="/2016/11/27/poj-1749-树上dp/">poj-1749-Rebuilding Roads-树上dp</a>
+      </li>
+    
+      <li>
+        <a href="/2016/11/27/codeforces-740D-Alyona-and-a-tree-树上二分/">codeforces-740D-Alyona and a tree-树上二分</a>
+      </li>
+    
+      <li>
+        <a href="/2016/11/23/codeforces-734E-Anton-and-Tree/">codeforces 734E-Anton and Tree</a>
+      </li>
+    
+      <li>
+        <a href="/2016/10/19/2016ccpc合肥打铁记/">2016ccpc合肥打铁记</a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/2016ccpc合肥/">2016ccpc合肥</a><small>1</small></li>
+  
+    <li><a href="/tags/2016沈阳网络赛/">2016沈阳网络赛</a><small>1</small></li>
+  
+    <li><a href="/tags/codeforces/">codeforces</a><small>5</small></li>
+  
+    <li><a href="/tags/dfs/">dfs</a><small>1</small></li>
+  
+    <li><a href="/tags/dp/">dp</a><small>2</small></li>
+  
+    <li><a href="/tags/hdu/">hdu</a><small>5</small></li>
+  
+    <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
+  
+    <li><a href="/tags/poj/">poj</a><small>1</small></li>
+  
+    <li><a href="/tags/二分/">二分</a><small>1</small></li>
+  
+    <li><a href="/tags/代码高亮/">代码高亮</a><small>1</small></li>
+  
+    <li><a href="/tags/分块/">分块</a><small>1</small></li>
+  
+    <li><a href="/tags/勒让德定理/">勒让德定理</a><small>1</small></li>
+  
+    <li><a href="/tags/单调栈/">单调栈</a><small>1</small></li>
+  
+    <li><a href="/tags/取模/">取模</a><small>1</small></li>
+  
+    <li><a href="/tags/并查集/">并查集</a><small>2</small></li>
+  
+    <li><a href="/tags/建图/">建图</a><small>1</small></li>
+  
+    <li><a href="/tags/快速幂/">快速幂</a><small>1</small></li>
+  
+    <li><a href="/tags/感想/">感想</a><small>1</small></li>
+  
+    <li><a href="/tags/扩展欧几里得/">扩展欧几里得</a><small>1</small></li>
+  
+    <li><a href="/tags/数位dp/">数位dp</a><small>2</small></li>
+  
+    <li><a href="/tags/数学/">数学</a><small>1</small></li>
+  
+    <li><a href="/tags/数论/">数论</a><small>3</small></li>
+  
+    <li><a href="/tags/方程组通解/">方程组通解</a><small>1</small></li>
+  
+    <li><a href="/tags/杂记/">杂记</a><small>1</small></li>
+  
+    <li><a href="/tags/树/">树</a><small>2</small></li>
+  
+    <li><a href="/tags/树状数组/">树状数组</a><small>1</small></li>
+  
+    <li><a href="/tags/树相关/">树相关</a><small>1</small></li>
+  
+    <li><a href="/tags/矩阵应用/">矩阵应用</a><small>1</small></li>
+  
+    <li><a href="/tags/矩阵快速幂/">矩阵快速幂</a><small>1</small></li>
+  
+    <li><a href="/tags/离散化/">离散化</a><small>1</small></li>
+  
+    <li><a href="/tags/线段树/">线段树</a><small>2</small></li>
+  
+    <li><a href="/tags/缩点/">缩点</a><small>1</small></li>
+  
+    <li><a href="/tags/莫比乌斯反演/">莫比乌斯反演</a><small>1</small></li>
+  
+    <li><a href="/tags/莫队/">莫队</a><small>1</small></li>
+  
+    <li><a href="/tags/费用流/">费用流</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">标签云</h3>
+  <div class="entry">
+    <a href="/tags/2016ccpc合肥/" style="font-size: 10px;">2016ccpc合肥</a> <a href="/tags/2016沈阳网络赛/" style="font-size: 10px;">2016沈阳网络赛</a> <a href="/tags/codeforces/" style="font-size: 20px;">codeforces</a> <a href="/tags/dfs/" style="font-size: 10px;">dfs</a> <a href="/tags/dp/" style="font-size: 13.33px;">dp</a> <a href="/tags/hdu/" style="font-size: 20px;">hdu</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/poj/" style="font-size: 10px;">poj</a> <a href="/tags/二分/" style="font-size: 10px;">二分</a> <a href="/tags/代码高亮/" style="font-size: 10px;">代码高亮</a> <a href="/tags/分块/" style="font-size: 10px;">分块</a> <a href="/tags/勒让德定理/" style="font-size: 10px;">勒让德定理</a> <a href="/tags/单调栈/" style="font-size: 10px;">单调栈</a> <a href="/tags/取模/" style="font-size: 10px;">取模</a> <a href="/tags/并查集/" style="font-size: 13.33px;">并查集</a> <a href="/tags/建图/" style="font-size: 10px;">建图</a> <a href="/tags/快速幂/" style="font-size: 10px;">快速幂</a> <a href="/tags/感想/" style="font-size: 10px;">感想</a> <a href="/tags/扩展欧几里得/" style="font-size: 10px;">扩展欧几里得</a> <a href="/tags/数位dp/" style="font-size: 13.33px;">数位dp</a> <a href="/tags/数学/" style="font-size: 10px;">数学</a> <a href="/tags/数论/" style="font-size: 16.67px;">数论</a> <a href="/tags/方程组通解/" style="font-size: 10px;">方程组通解</a> <a href="/tags/杂记/" style="font-size: 10px;">杂记</a> <a href="/tags/树/" style="font-size: 13.33px;">树</a> <a href="/tags/树状数组/" style="font-size: 10px;">树状数组</a> <a href="/tags/树相关/" style="font-size: 10px;">树相关</a> <a href="/tags/矩阵应用/" style="font-size: 10px;">矩阵应用</a> <a href="/tags/矩阵快速幂/" style="font-size: 10px;">矩阵快速幂</a> <a href="/tags/离散化/" style="font-size: 10px;">离散化</a> <a href="/tags/线段树/" style="font-size: 13.33px;">线段树</a> <a href="/tags/缩点/" style="font-size: 10px;">缩点</a> <a href="/tags/莫比乌斯反演/" style="font-size: 10px;">莫比乌斯反演</a> <a href="/tags/莫队/" style="font-size: 10px;">莫队</a> <a href="/tags/费用流/" style="font-size: 10px;">费用流</a>
+  </div>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  <p>
+  
+  &copy; 2016 ctr
+  
+  All rights reserved.</p>
+  <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</div>
+<div class="clearfix"></div>
+
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></footer>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<div id='bg'></div>
+</body>
+</html>
