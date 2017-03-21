@@ -3,16 +3,20 @@
 <head>
   <meta charset="utf-8" />
   
-  <title>树 | ctr&#39;s blog</title>
+  <title>codeforces-791D-Bear and Tree Jumps-树形dp | ctr&#39;s blog</title>
   <meta name="author" content="ctr" />
 
+  
+  <meta name="description" content="题目链接
+好久没更新了……奇怪的py写完了，明天下午上台瞎说说晚上就能挂上来了（写的奇丑无比）……
+题意：现在有一棵树，还有一只熊，这只熊每次可以从一个点跳到距离不超过k（k&amp;lt;=5）的点上。设f(x,y)表示从点x跳到y的最少次数，现让你求出所有点对(x,y),(其中x&amp;lt;y)的f值的和" />
   
 
   
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-  
+  <meta property="og:title" content="codeforces-791D-Bear and Tree Jumps-树形dp" />
   <meta property="og:site_name" content="ctr&#39;s blog" />
 
   
@@ -55,37 +59,80 @@
 </nav>
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper">
-<h2 class="archive-title category">树</h2>
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2017-03-21T13:42:35.000Z"><a href="/2017/03/21/codeforces-791D-Bear-and-Tree-Jumps-树形dp/">2017-03-21</a></time>
+      
+      
+  
+    <h1 class="title">codeforces-791D-Bear and Tree Jumps-树形dp</h1>
+  
 
-
-  <div class="archive">
+    </header>
+    <div class="entry">
+      
+        <p><a href="http://codeforces.com/contest/791/problem/D" title="题目链接" target="_blank" rel="external">题目链接</a></p>
+<p>好久没更新了……奇怪的py写完了，明天下午上台瞎说说晚上就能挂上来了（写的奇丑无比）……</p>
+<p>题意：现在有一棵树，还有一只熊，这只熊每次可以从一个点跳到距离不超过k（k&lt;=5）的点上。设f(x,y)表示从点x跳到y的最少次数，现让你求出所有点对(x,y),(其中x&lt;y)的f值的和</p>
+<a id="more"></a>
+<p>思路：这题好难啊(其实是自己太菜了)……想得到是树形dp,但是想不出来怎么计数……日常看题解。<br>对于每一个点对，他们的贡献是[dis(x,y)/k],这个式子可以写成dis(x,y)/k+((k-dis(x,y)%k+k)%k)/k;后一项也就是把没达到k倍数的部分补全。<br>前一部分，我们先看dis(x,y)我们可以枚举每一条边，这条边指向的子树的个数乘上剩余点的个数，就是这条边的贡献。全部加起来最后再除以k就行了。<br>难的是第二部分，对于两个点x,y,我们当然不能爆搜。我们可以利用dfs后缀和的性质，将一棵子树中的所有点按%k的值保存。dp[i][j]表示以i为根节点的子树中与总根节点距离%k=j的节点的个数，那么对于一个点来说，他的所有子节点构成的子树只要以k^2复杂度相互计算就行了，以他本身为lca。这样既不会重复，也很好转移。这个不太好说，直接看代码比较容易。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span> &gt;g[<span class="number">200005</span>];</div><div class="line"><span class="keyword">long</span> <span class="keyword">long</span> dp[<span class="number">200005</span>][<span class="number">10</span>];</div><div class="line"><span class="keyword">long</span> <span class="keyword">long</span> sum[<span class="number">200005</span>];</div><div class="line"><span class="keyword">long</span> <span class="keyword">long</span> n,m,k;</div><div class="line"><span class="keyword">long</span> <span class="keyword">long</span> ans=<span class="number">0</span>;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> fa,<span class="keyword">int</span> deep)</span></span></div><div class="line">&#123;</div><div class="line">	dp[u][deep%k]=<span class="number">1</span>;</div><div class="line">	sum[u]=<span class="number">1</span>;</div><div class="line">	<span class="keyword">int</span> l=g[u].size();</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;l;i++)</div><div class="line">	&#123;</div><div class="line">		<span class="keyword">int</span> v=g[u][i];</div><div class="line">		<span class="keyword">if</span>(v==fa)<span class="keyword">continue</span>;</div><div class="line">		dfs(v,u,deep+<span class="number">1</span>);</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> a=<span class="number">0</span>;a&lt;=k<span class="number">-1</span>;a++)</div><div class="line">		  <span class="keyword">for</span>(<span class="keyword">int</span> b=<span class="number">0</span>;b&lt;=k<span class="number">-1</span>;b++)</div><div class="line">		  &#123;</div><div class="line">		  	<span class="keyword">long</span> <span class="keyword">long</span> dis=((a+b)%k-(<span class="number">2</span>*deep)%k+k)%k;</div><div class="line">		  	<span class="keyword">long</span> <span class="keyword">long</span> gong=(k-dis+k)%k;</div><div class="line">		  	ans=ans+gong*dp[u][a]*dp[v][b];</div><div class="line">		  &#125;</div><div class="line">		ans+=sum[v]*(n-sum[v]);  </div><div class="line">		sum[u]+=sum[v];</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;k;j++)dp[u][j]+=dp[v][j];</div><div class="line">	&#125;	</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">	<span class="built_in">scanf</span>(<span class="string">"%I64d%I64d"</span>,&amp;n,&amp;k);	</div><div class="line"> 	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n<span class="number">-1</span>;i++)</div><div class="line"> 	&#123;</div><div class="line"> 		<span class="keyword">int</span> u,v;</div><div class="line"> 		<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;u,&amp;v);</div><div class="line"> 		g[u].push_back(v);</div><div class="line"> 		g[v].push_back(u);</div><div class="line">	 &#125;</div><div class="line">	dfs(<span class="number">1</span>,<span class="number">-1</span>,<span class="number">0</span>);</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%I64d\n"</span>,ans/k); </div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line"> &#125; </div><div class="line"></div></pre></td></tr></table></figure>
+      
+    </div>
     
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2016-11-27T07:33:50.000Z"><a href="/2016/11/27/codeforces-740D-Alyona-and-a-tree-树上二分/">2016-11-27</a></time>
-            
-              <h1 class="title"><a href="/2016/11/27/codeforces-740D-Alyona-and-a-tree-树上二分/">codeforces-740D-Alyona and a tree-树上二分</a></h1>
-            
-          </header>
+    <footer>
+        <div class="alignright">
+          
+          <a href="/2017/03/21/codeforces-791D-Bear-and-Tree-Jumps-树形dp/#comment" class="comment-link">评论</a>
+          
+          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
         </div>
-      </article>
-    
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2016-11-23T14:29:54.000Z"><a href="/2016/11/23/codeforces-734E-Anton-and-Tree/">2016-11-23</a></time>
-            
-              <h1 class="title"><a href="/2016/11/23/codeforces-734E-Anton-and-Tree/">codeforces 734E-Anton and Tree</a></h1>
-            
-          </header>
-        </div>
-      </article>
-    
+        
+  
+  <div class="categories">
+    <a href="/categories/dp/">dp</a>
   </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/dp/">dp</a>, <a href="/tags/树/">树</a>
+  </div>
+
+        <!-- partial('post/share') -->
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">留言</h1>
+
+  <!-- 多说评论框 start -->
+  <div class="ds-thread" data-thread-key="post-codeforces-791D-Bear-and-Tree-Jumps-树形dp" data-title="codeforces-791D-Bear and Tree Jumps-树形dp" data-url="http://ctrasd.github.io/2017/03/21/codeforces-791D-Bear-and-Tree-Jumps-树形dp/"></div>
+  <!-- 多说评论框 end -->
+  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+  <script type="text/javascript">
+  var duoshuoQuery = {short_name:'ctr'};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+       || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+  <!-- 多说公共JS代码 end -->
+
+</section>
+
+
 </div></div>
     <aside id="sidebar" class="alignright">
   <div class="search">
