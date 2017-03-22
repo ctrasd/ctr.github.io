@@ -1,0 +1,350 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8" />
+  
+  <title>长安大学图书馆查询系统源代码 | ctr&#39;s blog</title>
+  <meta name="author" content="ctr" />
+
+  
+  <meta name="description" content="奇怪的py可以挂上来了。用爬虫写的长安大学图书馆查询系统的源代码。当做五小创作品交了上去。虽然很丑……
+制作流程和后续版本将会陆续发布。" />
+  
+
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+  <meta property="og:title" content="长安大学图书馆查询系统源代码" />
+  <meta property="og:site_name" content="ctr&#39;s blog" />
+
+  
+  
+
+  
+    <meta property="og:image" content="undefined" />
+  
+
+  
+  <link href="/css/images/favicon.ico" rel="icon" />
+  
+
+  <link rel="alternate" href="/atom.xml" title="ctr&#39;s blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">ctr&#39;s blog</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">主页</a></li>
+    
+      <li><a href="/archives">归档</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2017-03-22T06:53:22.000Z"><a href="/2017/03/22/长安大学图书馆查询系统源代码/">2017-03-22</a></time>
+      
+      
+  
+    <h1 class="title">长安大学图书馆查询系统源代码</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>奇怪的py可以挂上来了。<br>用爬虫写的长安大学图书馆查询系统的源代码。<br>当做五小创作品交了上去。<br>虽然很丑……</p>
+<p>制作流程和后续版本将会陆续发布。</p>
+<a id="more"></a>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div><div class="line">201</div><div class="line">202</div><div class="line">203</div><div class="line">204</div><div class="line">205</div><div class="line">206</div><div class="line">207</div><div class="line">208</div><div class="line">209</div><div class="line">210</div><div class="line">211</div><div class="line">212</div><div class="line">213</div><div class="line">214</div><div class="line">215</div><div class="line">216</div><div class="line">217</div><div class="line">218</div><div class="line">219</div><div class="line">220</div><div class="line">221</div><div class="line">222</div><div class="line">223</div><div class="line">224</div><div class="line">225</div><div class="line">226</div><div class="line">227</div><div class="line">228</div><div class="line">229</div><div class="line">230</div><div class="line">231</div><div class="line">232</div><div class="line">233</div><div class="line">234</div><div class="line">235</div><div class="line">236</div><div class="line">237</div><div class="line">238</div><div class="line">239</div><div class="line">240</div><div class="line">241</div><div class="line">242</div><div class="line">243</div><div class="line">244</div><div class="line">245</div><div class="line">246</div><div class="line">247</div><div class="line">248</div><div class="line">249</div><div class="line">250</div><div class="line">251</div><div class="line">252</div><div class="line">253</div><div class="line">254</div><div class="line">255</div><div class="line">256</div><div class="line">257</div><div class="line">258</div><div class="line">259</div><div class="line">260</div><div class="line">261</div><div class="line">262</div><div class="line">263</div><div class="line">264</div><div class="line">265</div><div class="line">266</div><div class="line">267</div><div class="line">268</div><div class="line">269</div><div class="line">270</div><div class="line">271</div><div class="line">272</div><div class="line">273</div><div class="line">274</div><div class="line">275</div><div class="line">276</div><div class="line">277</div><div class="line">278</div><div class="line">279</div><div class="line">280</div><div class="line">281</div><div class="line">282</div><div class="line">283</div><div class="line">284</div><div class="line">285</div><div class="line">286</div><div class="line">287</div><div class="line">288</div><div class="line">289</div><div class="line">290</div><div class="line">291</div><div class="line">292</div><div class="line">293</div><div class="line">294</div><div class="line">295</div><div class="line">296</div><div class="line">297</div><div class="line">298</div><div class="line">299</div><div class="line">300</div><div class="line">301</div><div class="line">302</div><div class="line">303</div><div class="line">304</div><div class="line">305</div><div class="line">306</div><div class="line">307</div><div class="line">308</div><div class="line">309</div><div class="line">310</div><div class="line">311</div><div class="line">312</div><div class="line">313</div><div class="line">314</div><div class="line">315</div><div class="line">316</div><div class="line">317</div><div class="line">318</div><div class="line">319</div><div class="line">320</div><div class="line">321</div><div class="line">322</div><div class="line">323</div><div class="line">324</div><div class="line">325</div><div class="line">326</div><div class="line">327</div><div class="line">328</div><div class="line">329</div><div class="line">330</div><div class="line">331</div><div class="line">332</div><div class="line">333</div><div class="line">334</div><div class="line">335</div><div class="line">336</div><div class="line">337</div><div class="line">338</div><div class="line">339</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding: utf-8 -*-</span></div><div class="line"><span class="comment">#!/usr/bin/env python3</span></div><div class="line">__author__=<span class="string">'ctr'</span></div><div class="line"><span class="keyword">import</span> urllib  </div><div class="line"><span class="keyword">import</span> http.cookiejar</div><div class="line"><span class="comment">#import urllib2  </span></div><div class="line"><span class="comment">#import cookielib  </span></div><div class="line"><span class="keyword">import</span> re</div><div class="line"><span class="keyword">import</span> sys</div><div class="line"><span class="keyword">import</span> pytesser</div><div class="line"><span class="keyword">import</span> PIL</div><div class="line"><span class="keyword">from</span> pytesseract <span class="keyword">import</span> *</div><div class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</div><div class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> ImageEnhance</div><div class="line"><span class="keyword">import</span> os</div><div class="line"><span class="keyword">import</span> getpass</div><div class="line"><span class="keyword">import</span>  msvcrt</div><div class="line"><span class="keyword">import</span> time</div><div class="line"></div><div class="line"></div><div class="line">cj = http.cookiejar.CookieJar()</div><div class="line">cookie_support = urllib.request.HTTPCookieProcessor(cj)</div><div class="line">opener = urllib.request.build_opener(cookie_support, urllib.request.HTTPHandler)</div><div class="line">urllib.request.install_opener(opener)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">pwd_input</span><span class="params">()</span>:</span></div><div class="line">	chars = [] </div><div class="line">	<span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">		<span class="keyword">try</span>:</div><div class="line">			newChar = msvcrt.getch().decode(encoding=<span class="string">"utf-8"</span>)</div><div class="line">		<span class="keyword">except</span>:</div><div class="line">			<span class="keyword">return</span> input(<span class="string">"你很可能不是在cmd命令行下运行，密码输入将不能隐藏:"</span>)</div><div class="line">		<span class="keyword">if</span> newChar <span class="keyword">in</span> <span class="string">'\r\n'</span>: <span class="comment"># 如果是换行，则输入结束             </span></div><div class="line">			<span class="keyword">break</span> </div><div class="line">		<span class="keyword">elif</span> newChar == <span class="string">'\b'</span>: <span class="comment"># 如果是退格，则删除密码末尾一位并且删除一个星号 </span></div><div class="line">			<span class="keyword">if</span> chars:  </div><div class="line">				<span class="keyword">del</span> chars[<span class="number">-1</span>] </div><div class="line">				msvcrt.putch(<span class="string">'\b'</span>.encode(encoding=<span class="string">'utf-8'</span>)) <span class="comment"># 光标回退一格</span></div><div class="line">				msvcrt.putch( <span class="string">' '</span>.encode(encoding=<span class="string">'utf-8'</span>)) <span class="comment"># 输出一个空格覆盖原来的星号</span></div><div class="line">				msvcrt.putch(<span class="string">'\b'</span>.encode(encoding=<span class="string">'utf-8'</span>)) <span class="comment"># 光标回退一格准备接受新的输入                 </span></div><div class="line">		<span class="keyword">else</span>:</div><div class="line">			chars.append(newChar)</div><div class="line">			msvcrt.putch(<span class="string">'*'</span>.encode(encoding=<span class="string">'utf-8'</span>)) <span class="comment"># 显示为星号</span></div><div class="line">	<span class="keyword">return</span> (<span class="string">''</span>.join(chars) )</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">denglu</span><span class="params">(usr,psw)</span>:</span></div><div class="line">	hosturl=<span class="string">'http://wiscom.chd.edu.cn:8080/reader/'</span></div><div class="line">	posturl=<span class="string">'http://wiscom.chd.edu.cn:8080/reader/redr_verify.php'</span></div><div class="line"></div><div class="line">	<span class="comment">#验证码</span></div><div class="line">	captcha=opener.open(<span class="string">'http://wiscom.chd.edu.cn:8080/reader/captcha.php'</span>)</div><div class="line">	f=open(<span class="string">'图书馆系统临时文件/1.jpg'</span>,<span class="string">'wb'</span>)</div><div class="line">	buf=captcha.read()</div><div class="line">	f.write(buf)</div><div class="line">	f.close()</div><div class="line">	im=Image.open(<span class="string">'图书馆系统临时文件/1.jpg'</span>).convert(<span class="string">'L'</span>)</div><div class="line">	captcha=image_to_string(im)</div><div class="line">	<span class="comment">#print(captcha)</span></div><div class="line"></div><div class="line"></div><div class="line">	headers = &#123;<span class="string">'User-Agent'</span>: <span class="string">'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.84 Safari/537.36'</span>&#125; </div><div class="line">	postData = &#123;<span class="string">'number'</span>:usr,<span class="string">'passwd'</span>:psw,<span class="string">'captcha'</span>:captcha,<span class="string">'select'</span>:<span class="string">'cert_no'</span>,<span class="string">'returnUrl'</span>:<span class="string">''</span>&#125;</div><div class="line">	postData = urllib.parse.urlencode(postData).encode(encoding=<span class="string">'UTF8'</span>)</div><div class="line">	request = urllib.request.Request(posturl,postData,headers)</div><div class="line">	flagg=<span class="keyword">False</span></div><div class="line">	<span class="keyword">try</span>:</div><div class="line">		rt=opener.open(request)</div><div class="line">		text=rt.read().decode(<span class="string">'UTF-8'</span>)</div><div class="line">		f=open(<span class="string">'图书馆系统临时文件/1.html'</span>,<span class="string">'w'</span>)</div><div class="line">		f.write(text)</div><div class="line">		f.close()</div><div class="line">		<span class="comment">#rt=urllib.request.urlopen('http://wiscom.chd.edu.cn:8080/reader/redr_verify.php').read()</span></div><div class="line">	<span class="keyword">except</span> urllib.request.URLError <span class="keyword">as</span> e:</div><div class="line">		print(<span class="string">'Login Failed  [%s] '</span> %e.reason)</div><div class="line">	<span class="keyword">except</span> urllib.request.HTTPError <span class="keyword">as</span> e:</div><div class="line">		<span class="keyword">print</span> (<span class="string">'Login Failed  [%s] '</span> %e.code)</div><div class="line">	<span class="keyword">else</span>:</div><div class="line">		pattern1=<span class="string">r"对不起，密码错误，请查实！"</span></div><div class="line">		pattern1=re.compile(pattern1)</div><div class="line">		matcher1 = pattern1.findall(text)</div><div class="line">		pattern2=<span class="string">r"wrong check code"</span></div><div class="line">		pattern2=re.compile(pattern2)</div><div class="line">		matcher2=pattern2.findall(text)</div><div class="line">		<span class="comment">#print("matcher1:",matcher1)</span></div><div class="line">		<span class="comment">#input()</span></div><div class="line">		<span class="keyword">if</span> matcher1:</div><div class="line">			print(<span class="string">"对不起，密码错误，请查实！"</span>)</div><div class="line">			print(<span class="string">"按回车键重新输入"</span>)</div><div class="line">			input()</div><div class="line">			flagg=<span class="keyword">False</span></div><div class="line">		<span class="keyword">elif</span> matcher2:</div><div class="line">			print(<span class="string">"对不起，我们的验证码识别出现问题，请重新登录"</span>)</div><div class="line">			print(<span class="string">"按回车键重新输入"</span>)</div><div class="line">			input()</div><div class="line">			flagg=<span class="keyword">False</span></div><div class="line">		<span class="keyword">else</span>:</div><div class="line">			flagg=<span class="keyword">True</span></div><div class="line">	<span class="keyword">return</span> flagg</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">convert</span><span class="params">(s)</span>:</span></div><div class="line">	s=s.strip(<span class="string">'&amp;#x;'</span>)</div><div class="line">	s=bytes(<span class="string">r'\u'</span>+s,<span class="string">'ascii'</span>)</div><div class="line">	<span class="keyword">return</span> s.decode(<span class="string">'unicode_escape'</span>)</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">lishi</span><span class="params">()</span>:</span></div><div class="line">	f=open(<span class="string">'图书馆系统临时文件/lishi.html'</span>,<span class="string">'r'</span>,encoding=<span class="string">'utf-8'</span>)</div><div class="line">	text=f.read()</div><div class="line">	<span class="comment">#pattern1=r"t\"&gt;(.+?)&lt;/td&gt;"</span></div><div class="line">	<span class="comment">#pattern1=re.compile(pattern1)</span></div><div class="line">	<span class="comment">#text1=pattern1.findall(text)</span></div><div class="line">	<span class="comment">#for subtext in text1:</span></div><div class="line">	<span class="comment">#	print(subtext, end=' ')</span></div><div class="line">	<span class="comment">#print('')</span></div><div class="line">	pattern2=<span class="string">r"&lt;td bgcolor=\"#FFFFFF\"(.+?)&gt;(.+?)&lt;/td&gt;\s*?&lt;(.+?)&gt;(.+?)&lt;/td&gt;\s*?&lt;(.+?)&gt;&lt;a(.+?)&gt;(.+?)&lt;/a&gt;&lt;/td&gt;\s*?&lt;td(.+?)&gt;(.+?)&lt;/td&gt;\s*?&lt;(.+?)&gt;(.+?)&lt;/td&gt;\s*?&lt;(.+?)&gt;(.+?)&lt;/td&gt;\s*?&lt;(.+?)&gt;(.+?)&lt;/td&gt;"</span></div><div class="line">	pattern2=re.compile(pattern2)</div><div class="line">	text2=pattern2.findall(text)</div><div class="line">	</div><div class="line">	<span class="keyword">for</span> t <span class="keyword">in</span> text2:</div><div class="line">		pattern3=<span class="string">r"&amp;#x.+?;"</span></div><div class="line">		pattern3=re.compile(pattern3);</div><div class="line">		text3=pattern3.findall(t[<span class="number">6</span>])</div><div class="line">		pp=<span class="string">''</span></div><div class="line">		<span class="keyword">for</span> text <span class="keyword">in</span> text3:</div><div class="line">			pp+=convert(text)</div><div class="line">		pattern3=<span class="string">r"&amp;#x.+?;"</span></div><div class="line">		pattern3=re.compile(pattern3);</div><div class="line">		text3=pattern3.findall(t[<span class="number">8</span>])</div><div class="line">		tt=<span class="string">''</span></div><div class="line">		<span class="keyword">for</span> text <span class="keyword">in</span> text3:</div><div class="line">			tt+=convert(text)</div><div class="line">		print(<span class="string">'编号：'</span>,t[<span class="number">1</span>],<span class="string">'\n'</span>,<span class="string">'--条码号：'</span>,t[<span class="number">3</span>],<span class="string">'\n'</span>,<span class="string">'--题名：'</span>,pp,<span class="string">'\n'</span>,<span class="string">'--责任者：'</span>,tt,<span class="string">'\n'</span>,<span class="string">'--借阅日期:'</span>,t[<span class="number">10</span>],<span class="string">'\n'</span>,<span class="string">'--归还日期：'</span>,t[<span class="number">12</span>],<span class="string">'\n'</span>,<span class="string">'--馆藏地：'</span>,t[<span class="number">14</span>])</div><div class="line">		print(<span class="string">''</span>)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">dangqian</span><span class="params">()</span>:</span></div><div class="line">	f=open(<span class="string">'图书馆系统临时文件/dangqian.html'</span>,<span class="string">'r'</span>,encoding=<span class="string">'utf-8'</span>)</div><div class="line">	textq=f.read()</div><div class="line">	f.close()</div><div class="line">	textt=textq</div><div class="line">	<span class="comment">#print(text)</span></div><div class="line">	pattern=<span class="string">r"&lt;b class=\"blue\"&gt;(.+?)&lt;/b&gt;"</span></div><div class="line">	pattern=re.compile(pattern)</div><div class="line">	text1=pattern.findall(textq)</div><div class="line">	<span class="comment">#print('当前借阅:',text1[0],'/最大借阅:',text1[1])</span></div><div class="line">	<span class="comment">#print(text1)</span></div><div class="line">	pattern=<span class="string">r"\"&gt;(.+?)&lt;/td&gt;\s*?&lt;td.+?&gt;&lt;a.+?&gt;(.+?)&lt;/a&gt; (.+?)&lt;/td&gt;\s*?&lt;td.+?&gt;(.+?)&lt;/td&gt;\s*?&lt;td.+?&gt;&lt;font color=&gt;(.+?)&lt;/font&gt;&lt;/td&gt;\s*?&lt;td.+?&gt;(.+?)&lt;/td&gt;\s*?&lt;td.+?&gt;(.+?)&lt;/td&gt;\s*?&lt;td.+?&gt;(.+?)&lt;/td&gt;"</span></div><div class="line">	pattern=re.compile(pattern)</div><div class="line">	text2=pattern.findall(textq)</div><div class="line">	<span class="comment">#print(text2)</span></div><div class="line">	cnt=<span class="number">0</span></div><div class="line">	<span class="keyword">for</span> t <span class="keyword">in</span> text2:</div><div class="line">		cnt=cnt+<span class="number">1</span></div><div class="line">		pattern3=<span class="string">r"&amp;#x.+?;"</span></div><div class="line">		pattern3=re.compile(pattern3);</div><div class="line">		text3=pattern3.findall(t[<span class="number">1</span>])</div><div class="line">		pp=<span class="string">''</span></div><div class="line">		<span class="keyword">for</span> texttemp <span class="keyword">in</span> text3:</div><div class="line">			pp+=convert(texttemp)</div><div class="line">		pattern3=<span class="string">r"&amp;#x.+?;"</span></div><div class="line">		pattern3=re.compile(pattern3);</div><div class="line">		text3=pattern3.findall(t[<span class="number">2</span>])</div><div class="line">		tt=<span class="string">'/'</span></div><div class="line">		<span class="keyword">for</span> texttemp <span class="keyword">in</span> text3:</div><div class="line">			tt+=convert(texttemp)</div><div class="line">		print(<span class="string">'编号:'</span>,cnt)</div><div class="line">		print(<span class="string">'--条码号:'</span>,t[<span class="number">0</span>])			</div><div class="line">		print(<span class="string">'--题名/责任者:'</span>,pp,tt)</div><div class="line">		print(<span class="string">'--借阅日期:'</span>,t[<span class="number">3</span>])</div><div class="line">		print(<span class="string">'--应还日期:'</span>,t[<span class="number">4</span>])</div><div class="line">		print(<span class="string">'--续借量:'</span>,t[<span class="number">5</span>])</div><div class="line">		print(<span class="string">'--馆藏地:'</span>,t[<span class="number">6</span>])</div><div class="line">		print(<span class="string">'--附件:'</span>,t[<span class="number">7</span>])</div><div class="line">		print(<span class="string">''</span>)</div><div class="line">	flagg=<span class="keyword">True</span></div><div class="line">	<span class="keyword">while</span> flagg:</div><div class="line">		ch=input(<span class="string">'是否选择续借？是:Y,否:N:'</span>)</div><div class="line">		<span class="keyword">if</span> ch==<span class="string">'Y'</span>:</div><div class="line">			pattern=<span class="string">r"getInLib\(\'(.+?)\',\'(.+?)\'"</span></div><div class="line">			pattern=re.compile(pattern)</div><div class="line">			ids=pattern.findall(textt)</div><div class="line">			<span class="comment">#print(type(ids[0][0]))</span></div><div class="line">			bookid=input(<span class="string">'请输入续借书编号:'</span>)</div><div class="line"></div><div class="line">			captcha=opener.open(<span class="string">'http://wiscom.chd.edu.cn:8080/reader/captcha.php'</span>)</div><div class="line">			f=open(<span class="string">'图书馆系统临时文件/1.jpg'</span>,<span class="string">'wb'</span>)</div><div class="line">			buf=captcha.read()</div><div class="line">			f.write(buf)</div><div class="line">			f.close()</div><div class="line">			im=Image.open(<span class="string">'图书馆系统临时文件/1.jpg'</span>).convert(<span class="string">'L'</span>)</div><div class="line">			captcha=image_to_string(im)</div><div class="line">			<span class="comment">#print(captcha)</span></div><div class="line">			mtime=time.time()</div><div class="line">			posturl=<span class="string">'http://wiscom.chd.edu.cn:8080/reader/ajax_renew.php?bar_code='</span>+ids[int(bookid)<span class="number">-1</span>][<span class="number">0</span>]+<span class="string">'&amp;check='</span>+ids[int(bookid)<span class="number">-1</span>][<span class="number">1</span>]+<span class="string">'&amp;captcha='</span>+str(captcha)+<span class="string">'&amp;time='</span>+str(int(<span class="number">100</span>*mtime))</div><div class="line">			rtd=opener.open(posturl)</div><div class="line">			textd=rtd.read().decode(<span class="string">'UTF-8'</span>)</div><div class="line">			fd=open(<span class="string">'图书馆系统临时文件/xujie.html'</span>,<span class="string">'w'</span>)</div><div class="line">			fd.write(textd)</div><div class="line">			fd.close()</div><div class="line">			pattern4=<span class="string">r'&lt;font color=red&gt;(.+?)&lt;/font&gt;'</span></div><div class="line">			pattern4=re.compile(pattern4)</div><div class="line">			textd=pattern4.findall(textd)</div><div class="line">			print(textd[<span class="number">0</span>])</div><div class="line">			print(<span class="string">''</span>)</div><div class="line">		<span class="keyword">else</span>:</div><div class="line">			print(<span class="string">''</span>)</div><div class="line">			flagg=<span class="keyword">False</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">zhangmu</span><span class="params">()</span>:</span></div><div class="line">	f=open(<span class="string">'图书馆系统临时文件/zhangmu.html'</span>,<span class="string">'r'</span>,encoding=<span class="string">'utf-8'</span>)</div><div class="line">	textz=f.read()</div><div class="line">	f.close()</div><div class="line">	pattern=<span class="string">r'总金额:&amp;nbsp;&amp;nbsp;\s*?\t\t\t\t\t(.+?)\s*?\(总金额＝缴款－退款－超期免罚\)'</span></div><div class="line">	pattern=re.compile(pattern)</div><div class="line">	textz=pattern.findall(textz)</div><div class="line">	print(textz[<span class="number">0</span>])</div><div class="line">	print(<span class="string">'(总金额＝缴款－退款－超期免罚)'</span>)</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">query</span><span class="params">(usr,psw)</span>:</span></div><div class="line">	flag=<span class="keyword">True</span></div><div class="line">	<span class="keyword">while</span> flag:</div><div class="line">		<span class="keyword">if</span> denglu(usr,psw)==<span class="keyword">True</span>:</div><div class="line">			t = os.system(<span class="string">'cls'</span>)</div><div class="line">			<span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">17</span>):</div><div class="line">				<span class="keyword">for</span> y <span class="keyword">in</span> range(<span class="number">1</span>,x*<span class="number">5</span>):</div><div class="line">					print(<span class="string">'&gt;'</span>,end=<span class="string">''</span>)</div><div class="line">				print(<span class="string">''</span>)</div><div class="line">				time.sleep(<span class="number">0.3</span>)	</div><div class="line"></div><div class="line">			print(<span class="string">''</span>)</div><div class="line">			print(<span class="string">'                                    登录完毕！                                 '</span>)  </div><div class="line">			time.sleep(<span class="number">3</span>)</div><div class="line">			t = os.system(<span class="string">'cls'</span>)</div><div class="line">			<span class="keyword">while</span> flag:</div><div class="line">				<span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">3</span>):</div><div class="line">					print(<span class="string">''</span>)</div><div class="line">				print(<span class="string">'---------------------------------1:输出基本信息---------------------------------'</span>)</div><div class="line">				print(<span class="string">'                                                                               '</span>)</div><div class="line">				print(<span class="string">'---------------------------------2:输出到期信息---------------------------------'</span>)</div><div class="line">				print(<span class="string">'                                                                               '</span>)</div><div class="line">				print(<span class="string">'---------------------------------3:输出历史信息---------------------------------'</span>)</div><div class="line">				print(<span class="string">'                                                                               '</span>)</div><div class="line">				print(<span class="string">'---------------------------------4:输出当前借阅---------------------------------'</span>)</div><div class="line">				print(<span class="string">'                                                                               '</span>)</div><div class="line">				print(<span class="string">'---------------------------------5:输出账目清单---------------------------------'</span>)</div><div class="line">				print(<span class="string">'                                                                               '</span>)</div><div class="line">				print(<span class="string">'-----------------------------------6:退出系统-----------------------------------'</span>)</div><div class="line">				ch=input()</div><div class="line">				<span class="keyword">if</span> ch==<span class="string">'1'</span>:</div><div class="line">					text=urllib.request.urlopen(<span class="string">'http://wiscom.chd.edu.cn:8080/reader/redr_info.php'</span>).read().decode(<span class="string">'UTF-8'</span>)</div><div class="line">					f=open(<span class="string">'图书馆系统临时文件/jiben.html'</span>,<span class="string">'w'</span>)</div><div class="line">					f.write(text)</div><div class="line">					f.close()</div><div class="line">					key=text</div><div class="line">					pattern1=<span class="string">r"\"&gt;(.+?)&lt;/span&gt;(.+?)&lt;/TD&gt;"</span></div><div class="line">					pattern1=re.compile(pattern1)</div><div class="line">					text=pattern1.findall(key)</div><div class="line">					<span class="comment">#print(text)</span></div><div class="line">					<span class="keyword">for</span> subtext <span class="keyword">in</span> text:</div><div class="line">						print(<span class="string">'---'</span>,subtext[<span class="number">0</span>],subtext[<span class="number">1</span>],<span class="string">'            '</span>)</div><div class="line">					print(<span class="string">''</span>)</div><div class="line"></div><div class="line"></div><div class="line">				<span class="keyword">if</span> ch==<span class="string">'2'</span>:</div><div class="line">					text=urllib.request.urlopen(<span class="string">'http://wiscom.chd.edu.cn:8080/reader/redr_info.php'</span>).read().decode(<span class="string">'UTF-8'</span>)</div><div class="line">					<span class="comment">#f=open('C:/图书馆系统临时文件/jiben.html','wb')</span></div><div class="line">					key=text</div><div class="line">					<span class="comment">#print(key)</span></div><div class="line">					<span class="comment">#f.close()</span></div><div class="line">					pattern1=<span class="string">r"\"&gt;(.+?)\[&lt;strong style=\"color:#F00;\"&gt;(.+?)&lt;/strong&gt;"</span></div><div class="line">					pattern1=re.compile(pattern1)</div><div class="line">					text=pattern1.findall(key)</div><div class="line">					<span class="keyword">for</span> subtext <span class="keyword">in</span> text:</div><div class="line">						print(<span class="string">'---'</span>,subtext[<span class="number">0</span>],subtext[<span class="number">1</span>],<span class="string">'            '</span>)</div><div class="line">					print(<span class="string">''</span>)</div><div class="line">					<span class="comment">#f.write(text)</span></div><div class="line">					</div><div class="line"></div><div class="line"></div><div class="line">				<span class="keyword">if</span> ch==<span class="string">'3'</span>:</div><div class="line">					text=urllib.request.urlopen(<span class="string">'http://wiscom.chd.edu.cn:8080/reader/book_hist.php?para_string=all'</span>).read()</div><div class="line">					f=open(<span class="string">'图书馆系统临时文件/lishi.html'</span>,<span class="string">'wb'</span>)</div><div class="line">					f.write(text)</div><div class="line">					f.close()</div><div class="line">					lishi()</div><div class="line">					</div><div class="line"></div><div class="line">				<span class="keyword">if</span> ch==<span class="string">'4'</span>:</div><div class="line">					text=urllib.request.urlopen(<span class="string">'http://wiscom.chd.edu.cn:8080/reader/book_lst.php'</span>).read()</div><div class="line">					f=open(<span class="string">'图书馆系统临时文件/dangqian.html'</span>,<span class="string">'wb'</span>)</div><div class="line">					f.write(text)</div><div class="line">					f.close()</div><div class="line">					dangqian()</div><div class="line">				</div><div class="line">				<span class="keyword">if</span> ch==<span class="string">'5'</span>:</div><div class="line">					text=urllib.request.urlopen(<span class="string">'http://wiscom.chd.edu.cn:8080/reader/account.php'</span>).read()</div><div class="line">					f=open(<span class="string">'图书馆系统临时文件/zhangmu.html'</span>,<span class="string">'wb'</span>)</div><div class="line">					f.write(text)</div><div class="line">					f.close()</div><div class="line">					zhangmu()</div><div class="line"></div><div class="line">				<span class="keyword">if</span> ch==<span class="string">'6'</span>:</div><div class="line">					flag=<span class="keyword">False</span></div><div class="line"></div><div class="line">				input(<span class="string">'按回车键继续'</span>)</div><div class="line">				t = os.system(<span class="string">'cls'</span>)  </div><div class="line">		<span class="keyword">else</span>:</div><div class="line">			t = os.system(<span class="string">'cls'</span>)  </div><div class="line">			usr=input(<span class="string">'输入账号:\n'</span>)</div><div class="line">			print(<span class="string">'输入密码:'</span>)</div><div class="line">			psw=pwd_input()</div><div class="line">			print(<span class="string">''</span>)</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">	<span class="keyword">if</span> os.path.exists(<span class="string">'图书馆系统临时文件'</span>)==<span class="keyword">False</span>:</div><div class="line">		os.mkdir(<span class="string">r'图书馆系统临时文件'</span>)</div><div class="line">	t = os.system(<span class="string">'cls'</span>)</div><div class="line">	<span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">6</span>):</div><div class="line">		print(<span class="string">''</span>)</div><div class="line">	print(<span class="string">'                       长安大学图书馆查询系统v1.0'</span>)</div><div class="line">	print(<span class="string">''</span>)</div><div class="line">	print(<span class="string">''</span>)</div><div class="line">	print(<span class="string">'                                            ——Developed By CTR'</span>)</div><div class="line">	print(<span class="string">''</span>)</div><div class="line">	print(<span class="string">''</span>)</div><div class="line">	input(<span class="string">'                             按回车键进入'</span>)	</div><div class="line">	t = os.system(<span class="string">'cls'</span>)  </div><div class="line">	<span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">6</span>):</div><div class="line">		print(<span class="string">''</span>)</div><div class="line">	print(<span class="string">'输入账号:'</span>)</div><div class="line">	usr=input()</div><div class="line">	print(<span class="string">'输入密码:'</span>)</div><div class="line">	psw=pwd_input()</div><div class="line">	print(<span class="string">''</span>)</div><div class="line">	query(usr,psw)</div><div class="line"></div></pre></td></tr></table></figure>
+      
+    </div>
+    
+    <footer>
+        <div class="alignright">
+          
+          <a href="/2017/03/22/长安大学图书馆查询系统源代码/#comment" class="comment-link">评论</a>
+          
+          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
+        </div>
+        
+  
+  <div class="categories">
+    <a href="/categories/py/">py</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/py/">py</a>, <a href="/tags/五小创/">五小创</a>, <a href="/tags/爬虫/">爬虫</a>
+  </div>
+
+        <!-- partial('post/share') -->
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">留言</h1>
+
+  <!-- 多说评论框 start -->
+  <div class="ds-thread" data-thread-key="post-长安大学图书馆查询系统源代码" data-title="长安大学图书馆查询系统源代码" data-url="http://ctrasd.github.io/2017/03/22/长安大学图书馆查询系统源代码/"></div>
+  <!-- 多说评论框 end -->
+  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+  <script type="text/javascript">
+  var duoshuoQuery = {short_name:'ctr'};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+       || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+  <!-- 多说公共JS代码 end -->
+
+</section>
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:ctrasd.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/dp/">dp</a><small>6</small></li>
+  
+    <li><a href="/categories/py/">py</a><small>1</small></li>
+  
+    <li><a href="/categories/单调性/">单调性</a><small>1</small></li>
+  
+    <li><a href="/categories/单调栈/">单调栈</a><small>1</small></li>
+  
+    <li><a href="/categories/博客建设/">博客建设</a><small>1</small></li>
+  
+    <li><a href="/categories/图论/">图论</a><small>2</small></li>
+  
+    <li><a href="/categories/并查集/">并查集</a><small>1</small></li>
+  
+    <li><a href="/categories/思维题/">思维题</a><small>1</small></li>
+  
+    <li><a href="/categories/感想/">感想</a><small>1</small></li>
+  
+    <li><a href="/categories/数学/">数学</a><small>1</small></li>
+  
+    <li><a href="/categories/数论/">数论</a><small>4</small></li>
+  
+    <li><a href="/categories/杂记/">杂记</a><small>1</small></li>
+  
+    <li><a href="/categories/树/">树</a><small>2</small></li>
+  
+    <li><a href="/categories/树状数组/">树状数组</a><small>1</small></li>
+  
+    <li><a href="/categories/线段树/">线段树</a><small>2</small></li>
+  
+    <li><a href="/categories/线段树-树状数组/">线段树/树状数组</a><small>1</small></li>
+  
+    <li><a href="/categories/莫队/">莫队</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">最新文章</h3>
+  <ul class="entry">
+    
+      <li>
+        <a href="/2017/03/22/长安大学图书馆查询系统源代码/">长安大学图书馆查询系统源代码</a>
+      </li>
+    
+      <li>
+        <a href="/2017/03/21/codeforces-791D-Bear-and-Tree-Jumps-树形dp/">codeforces-791D-Bear and Tree Jumps-树形dp</a>
+      </li>
+    
+      <li>
+        <a href="/2017/03/09/北方高校联合训练第一周D-数学题-二分-尺取-单调性/">北方高校联合训练第一周D-数学题-二分+尺取+单调性</a>
+      </li>
+    
+      <li>
+        <a href="/2017/02/27/codeforces-776D-The-Door-Problem-2-sat模板题/">codeforces 776D-The Door Problem 2-sat模板题</a>
+      </li>
+    
+      <li>
+        <a href="/2017/02/27/codeforces-777E-Hanoi-Factory-排序-树状数组/">codeforces 777E-Hanoi Factory 排序+树状数组+dp</a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/2-sat/">2-sat</a><small>1</small></li>
+  
+    <li><a href="/tags/2016ccpc合肥/">2016ccpc合肥</a><small>1</small></li>
+  
+    <li><a href="/tags/2016沈阳网络赛/">2016沈阳网络赛</a><small>1</small></li>
+  
+    <li><a href="/tags/codeforces/">codeforces</a><small>6</small></li>
+  
+    <li><a href="/tags/dfs/">dfs</a><small>1</small></li>
+  
+    <li><a href="/tags/dp/">dp</a><small>4</small></li>
+  
+    <li><a href="/tags/hdu/">hdu</a><small>5</small></li>
+  
+    <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
+  
+    <li><a href="/tags/poj/">poj</a><small>1</small></li>
+  
+    <li><a href="/tags/py/">py</a><small>1</small></li>
+  
+    <li><a href="/tags/二分/">二分</a><small>2</small></li>
+  
+    <li><a href="/tags/五小创/">五小创</a><small>1</small></li>
+  
+    <li><a href="/tags/代码高亮/">代码高亮</a><small>1</small></li>
+  
+    <li><a href="/tags/分块/">分块</a><small>1</small></li>
+  
+    <li><a href="/tags/前缀和/">前缀和</a><small>2</small></li>
+  
+    <li><a href="/tags/勒让德定理/">勒让德定理</a><small>1</small></li>
+  
+    <li><a href="/tags/单调性/">单调性</a><small>1</small></li>
+  
+    <li><a href="/tags/单调栈/">单调栈</a><small>1</small></li>
+  
+    <li><a href="/tags/取模/">取模</a><small>1</small></li>
+  
+    <li><a href="/tags/图论/">图论</a><small>1</small></li>
+  
+    <li><a href="/tags/尺取/">尺取</a><small>1</small></li>
+  
+    <li><a href="/tags/并查集/">并查集</a><small>2</small></li>
+  
+    <li><a href="/tags/建图/">建图</a><small>1</small></li>
+  
+    <li><a href="/tags/快速幂/">快速幂</a><small>1</small></li>
+  
+    <li><a href="/tags/感想/">感想</a><small>1</small></li>
+  
+    <li><a href="/tags/扩展欧几里得/">扩展欧几里得</a><small>1</small></li>
+  
+    <li><a href="/tags/排序/">排序</a><small>1</small></li>
+  
+    <li><a href="/tags/数位dp/">数位dp</a><small>2</small></li>
+  
+    <li><a href="/tags/数学/">数学</a><small>1</small></li>
+  
+    <li><a href="/tags/数论/">数论</a><small>3</small></li>
+  
+    <li><a href="/tags/方程组通解/">方程组通解</a><small>1</small></li>
+  
+    <li><a href="/tags/杂记/">杂记</a><small>1</small></li>
+  
+    <li><a href="/tags/树/">树</a><small>3</small></li>
+  
+    <li><a href="/tags/树状数组/">树状数组</a><small>2</small></li>
+  
+    <li><a href="/tags/树相关/">树相关</a><small>1</small></li>
+  
+    <li><a href="/tags/概率dp/">概率dp</a><small>1</small></li>
+  
+    <li><a href="/tags/爬虫/">爬虫</a><small>1</small></li>
+  
+    <li><a href="/tags/矩阵应用/">矩阵应用</a><small>1</small></li>
+  
+    <li><a href="/tags/矩阵快速幂/">矩阵快速幂</a><small>1</small></li>
+  
+    <li><a href="/tags/离散化/">离散化</a><small>2</small></li>
+  
+    <li><a href="/tags/线段树/">线段树</a><small>4</small></li>
+  
+    <li><a href="/tags/缩点/">缩点</a><small>1</small></li>
+  
+    <li><a href="/tags/莫比乌斯反演/">莫比乌斯反演</a><small>1</small></li>
+  
+    <li><a href="/tags/莫队/">莫队</a><small>1</small></li>
+  
+    <li><a href="/tags/费用流/">费用流</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">标签云</h3>
+  <div class="entry">
+    <a href="/tags/2-sat/" style="font-size: 10px;">2-sat</a> <a href="/tags/2016ccpc合肥/" style="font-size: 10px;">2016ccpc合肥</a> <a href="/tags/2016沈阳网络赛/" style="font-size: 10px;">2016沈阳网络赛</a> <a href="/tags/codeforces/" style="font-size: 20px;">codeforces</a> <a href="/tags/dfs/" style="font-size: 10px;">dfs</a> <a href="/tags/dp/" style="font-size: 16px;">dp</a> <a href="/tags/hdu/" style="font-size: 18px;">hdu</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/poj/" style="font-size: 10px;">poj</a> <a href="/tags/py/" style="font-size: 10px;">py</a> <a href="/tags/二分/" style="font-size: 12px;">二分</a> <a href="/tags/五小创/" style="font-size: 10px;">五小创</a> <a href="/tags/代码高亮/" style="font-size: 10px;">代码高亮</a> <a href="/tags/分块/" style="font-size: 10px;">分块</a> <a href="/tags/前缀和/" style="font-size: 12px;">前缀和</a> <a href="/tags/勒让德定理/" style="font-size: 10px;">勒让德定理</a> <a href="/tags/单调性/" style="font-size: 10px;">单调性</a> <a href="/tags/单调栈/" style="font-size: 10px;">单调栈</a> <a href="/tags/取模/" style="font-size: 10px;">取模</a> <a href="/tags/图论/" style="font-size: 10px;">图论</a> <a href="/tags/尺取/" style="font-size: 10px;">尺取</a> <a href="/tags/并查集/" style="font-size: 12px;">并查集</a> <a href="/tags/建图/" style="font-size: 10px;">建图</a> <a href="/tags/快速幂/" style="font-size: 10px;">快速幂</a> <a href="/tags/感想/" style="font-size: 10px;">感想</a> <a href="/tags/扩展欧几里得/" style="font-size: 10px;">扩展欧几里得</a> <a href="/tags/排序/" style="font-size: 10px;">排序</a> <a href="/tags/数位dp/" style="font-size: 12px;">数位dp</a> <a href="/tags/数学/" style="font-size: 10px;">数学</a> <a href="/tags/数论/" style="font-size: 14px;">数论</a> <a href="/tags/方程组通解/" style="font-size: 10px;">方程组通解</a> <a href="/tags/杂记/" style="font-size: 10px;">杂记</a> <a href="/tags/树/" style="font-size: 14px;">树</a> <a href="/tags/树状数组/" style="font-size: 12px;">树状数组</a> <a href="/tags/树相关/" style="font-size: 10px;">树相关</a> <a href="/tags/概率dp/" style="font-size: 10px;">概率dp</a> <a href="/tags/爬虫/" style="font-size: 10px;">爬虫</a> <a href="/tags/矩阵应用/" style="font-size: 10px;">矩阵应用</a> <a href="/tags/矩阵快速幂/" style="font-size: 10px;">矩阵快速幂</a> <a href="/tags/离散化/" style="font-size: 12px;">离散化</a> <a href="/tags/线段树/" style="font-size: 16px;">线段树</a> <a href="/tags/缩点/" style="font-size: 10px;">缩点</a> <a href="/tags/莫比乌斯反演/" style="font-size: 10px;">莫比乌斯反演</a> <a href="/tags/莫队/" style="font-size: 10px;">莫队</a> <a href="/tags/费用流/" style="font-size: 10px;">费用流</a>
+  </div>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  <p>
+  
+  &copy; 2017 ctr
+  
+  All rights reserved.</p>
+  <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</div>
+<div class="clearfix"></div>
+
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></footer>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<div id='bg'></div>
+</body>
+</html>
