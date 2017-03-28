@@ -3,16 +3,19 @@
 <head>
   <meta charset="utf-8" />
   
-  <title>树状数组 | ctr&#39;s blog</title>
+  <title>codeforces-360B-Levko and Array-二分+dp | ctr&#39;s blog</title>
   <meta name="author" content="ctr" />
 
+  
+  <meta name="description" content="cf题目链接北方高校第4次训练题目链接
+题意:有n个数排成一列，现在你可以改变k个数的大小。问你max(|ai-ai+1|)的最小值是多少（a∈[0,2e10]）（两个题目都保证n^2log复杂度可以过）" />
   
 
   
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-  
+  <meta property="og:title" content="codeforces-360B-Levko and Array-二分+dp" />
   <meta property="og:site_name" content="ctr&#39;s blog" />
 
   
@@ -55,37 +58,78 @@
 </nav>
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper">
-<h2 class="archive-title tag">树状数组</h2>
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2017-03-28T14:09:32.000Z"><a href="/2017/03/28/codeforces-360B-Levko-and-Array-二分-dp/">2017-03-28</a></time>
+      
+      
+  
+    <h1 class="title">codeforces-360B-Levko and Array-二分+dp</h1>
+  
 
-
-  <div class="archive">
+    </header>
+    <div class="entry">
+      
+        <p><a href="http://codeforces.com/problemset/problem/360/B" title="cf题目链接" target="_blank" rel="external">cf题目链接</a><br><a href="https://nanti.jisuanke.com/t/14898" title="北方高校第4次训练题目链接" target="_blank" rel="external">北方高校第4次训练题目链接</a></p>
+<p>题意:有n个数排成一列，现在你可以改变k个数的大小。问你max(|ai-ai+1|)的最小值是多少（a∈[0,2e10]）（两个题目都保证n^2log复杂度可以过）<br><a id="more"></a><br>orz，这题先是在wannafly的每日中见过……当时没做……然后这次西工大负责的北方高校训练又出了这道题……看来我们也可以出原题了</p>
+<p>思路:很容易想到二分答案，关键是怎么进行可行性判断……假设二分的答案为x，dp[i]表示第i个数不变，前i个数的最大差值不超过x。转移dp[i]=min(dp[i],dp[j]+i-j-1)(j&lt;i)，j要保证abs(a[i]-a[j])&lt;=k*x（也就是i,j不变，改变中间的数）。这样，只要存在一个i使得dp[i]+n-i&lt;=k就能判断x可行了。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;math.h&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="keyword">long</span> <span class="keyword">long</span> a[<span class="number">2002</span>];</div><div class="line"><span class="keyword">long</span> <span class="keyword">long</span> dp[<span class="number">2002</span>];</div><div class="line"><span class="keyword">long</span> <span class="keyword">long</span> INF=<span class="number">0x3f3f3f3f</span>;</div><div class="line"><span class="keyword">int</span> n,k;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">judge</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> x)</span></span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)dp[i]=i<span class="number">-1</span>;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</div><div class="line">	 <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;i;j++)</div><div class="line">	  <span class="keyword">if</span>(<span class="built_in">abs</span>(a[j]-a[i])&lt;=(i-j)*x)</div><div class="line">	  &#123;</div><div class="line">	  	dp[i]=min(dp[j]+i-j<span class="number">-1</span>,dp[i]);</div><div class="line">	  &#125;</div><div class="line">	<span class="keyword">int</span> flag=<span class="number">0</span>;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</div><div class="line">	 <span class="keyword">if</span>(dp[i]+n-i&lt;=k)flag=<span class="number">1</span>;</div><div class="line">	<span class="keyword">return</span> flag;   </div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">int</span> T;</div><div class="line">	<span class="comment">//scanf("%d",&amp;T);</span></div><div class="line">	T=<span class="number">1</span>;</div><div class="line">	<span class="keyword">while</span>(T--)</div><div class="line">	&#123;</div><div class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;k);</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)<span class="built_in">scanf</span>(<span class="string">"%lld"</span>,a+i);</div><div class="line">		<span class="keyword">long</span> <span class="keyword">long</span> l,r;</div><div class="line">		l=<span class="number">0</span>;r=<span class="number">2e9</span>+<span class="number">1</span>;</div><div class="line">		<span class="keyword">long</span> <span class="keyword">long</span> ans;</div><div class="line">		<span class="keyword">while</span>(l&lt;r<span class="number">-1</span>)</div><div class="line">		&#123;</div><div class="line">			<span class="keyword">long</span> <span class="keyword">long</span> mid=(l+r)/<span class="number">2</span>;</div><div class="line">			<span class="keyword">if</span>(judge(mid)==<span class="number">1</span>)r=mid;</div><div class="line">			 <span class="keyword">else</span> l=mid+<span class="number">1</span>;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">if</span>(judge(r<span class="number">-1</span>))r=r<span class="number">-1</span>;</div><div class="line">		<span class="keyword">if</span>(judge(l))r=l;</div><div class="line">		<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,r);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"></div></pre></td></tr></table></figure>
+      
+    </div>
     
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2017-02-27T13:26:12.000Z"><a href="/2017/02/27/codeforces-777E-Hanoi-Factory-排序-树状数组/">2017-02-27</a></time>
-            
-              <h1 class="title"><a href="/2017/02/27/codeforces-777E-Hanoi-Factory-排序-树状数组/">codeforces 777E-Hanoi Factory 排序+树状数组+dp</a></h1>
-            
-          </header>
+    <footer>
+        <div class="alignright">
+          
+          <a href="/2017/03/28/codeforces-360B-Levko-and-Array-二分-dp/#comment" class="comment-link">评论</a>
+          
+          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
         </div>
-      </article>
-    
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2016-09-12T14:22:42.000Z"><a href="/2016/09/12/hdu5877-Weak-Pair-dfs-离散化线段树/">2016-09-12</a></time>
-            
-              <h1 class="title"><a href="/2016/09/12/hdu5877-Weak-Pair-dfs-离散化线段树/">hdu5877-Weak Pair-dfs+离散化线段树/树状数组 大连网络赛</a></h1>
-            
-          </header>
-        </div>
-      </article>
-    
+        
+  
+  <div class="categories">
+    <a href="/categories/dp/">dp</a>
   </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/dp/">dp</a>, <a href="/tags/二分/">二分</a>
+  </div>
+
+        <!-- partial('post/share') -->
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">留言</h1>
+
+  <!-- 多说评论框 start -->
+  <div class="ds-thread" data-thread-key="post-codeforces-360B-Levko-and-Array-二分-dp" data-title="codeforces-360B-Levko and Array-二分+dp" data-url="http://ctrasd.github.io/2017/03/28/codeforces-360B-Levko-and-Array-二分-dp/"></div>
+  <!-- 多说评论框 end -->
+  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+  <script type="text/javascript">
+  var duoshuoQuery = {short_name:'ctr'};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+       || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+  <!-- 多说公共JS代码 end -->
+
+</section>
+
+
 </div></div>
     <aside id="sidebar" class="alignright">
   <div class="search">
