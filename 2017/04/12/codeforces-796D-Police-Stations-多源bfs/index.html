@@ -3,16 +3,19 @@
 <head>
   <meta charset="utf-8" />
   
-  <title>归档：2016/7 | ctr&#39;s blog</title>
+  <title>codeforces-796D-Police Stations-多源bfs | ctr&#39;s blog</title>
   <meta name="author" content="ctr" />
 
+  
+  <meta name="description" content="题目链接
+题意：给你一棵树，树上的一些点是警察局，现在要求每个点到最近的警察局的距离小于等于d，问你最多能删掉多少边使得这个要求仍然满足" />
   
 
   
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-  
+  <meta property="og:title" content="codeforces-796D-Police Stations-多源bfs" />
   <meta property="og:site_name" content="ctr&#39;s blog" />
 
   
@@ -55,49 +58,75 @@
 </nav>
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper">
-<h2 class="archive-title">2016/7</h2>
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2017-04-12T02:33:39.000Z"><a href="/2017/04/12/codeforces-796D-Police-Stations-多源bfs/">2017-04-12</a></time>
+      
+      
+  
+    <h1 class="title">codeforces-796D-Police Stations-多源bfs</h1>
+  
 
-
-  <div class="archive">
+    </header>
+    <div class="entry">
+      
+        <p><a href="http://codeforces.com/contest/796/problem/D" title="题目链接" target="_blank" rel="external">题目链接</a></p>
+<p>题意：给你一棵树，树上的一些点是警察局，现在要求每个点到最近的警察局的距离小于等于d，问你最多能删掉多少边使得这个要求仍然满足</p>
+<a id="more"></a>
+<p>这次cf的D，感觉比C要简单一些啊……好吧，主要C一开始想了个很挫的方法……还是错的……</p>
+<p>思路：每个点只要保留到最近的警察局的边就行了，别的可以随便删。所以从每个警察局开始bfs，第一次访问到的点保留走过的边，别的删掉就行。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;map&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">struct</span> node</div><div class="line">&#123;</div><div class="line">	<span class="keyword">int</span> u;</div><div class="line">	<span class="keyword">int</span> d;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">int</span> n,k,d;</div><div class="line"><span class="keyword">int</span> isp[<span class="number">300005</span>];</div><div class="line"><span class="keyword">int</span> edge[<span class="number">300005</span>][<span class="number">3</span>];</div><div class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;g[<span class="number">300005</span>];</div><div class="line"><span class="built_in">queue</span>&lt;node&gt;q;</div><div class="line"><span class="keyword">int</span> vis[<span class="number">300005</span>];</div><div class="line"><span class="built_in">map</span>&lt;pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; ,<span class="keyword">int</span>&gt;f;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">	<span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;n,&amp;k,&amp;d);</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=k;i++)</div><div class="line">	&#123;</div><div class="line">		<span class="keyword">int</span> x;</div><div class="line">		<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;x);</div><div class="line">		isp[x]=<span class="number">1</span>;</div><div class="line">		q.push((node)&#123;x,<span class="number">0</span>&#125;);</div><div class="line">		vis[x]=<span class="number">1</span>;	</div><div class="line">	&#125;		</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n<span class="number">-1</span>;i++)</div><div class="line">	&#123;</div><div class="line">		<span class="keyword">int</span> u,v;</div><div class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;u,&amp;v);</div><div class="line">		edge[i][<span class="number">1</span>]=u;</div><div class="line">		edge[i][<span class="number">2</span>]=v;</div><div class="line">		g[u].push_back(v);</div><div class="line">		g[v].push_back(u);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">int</span> cnt=n<span class="number">-1</span>;</div><div class="line">	<span class="keyword">while</span>(!q.empty())</div><div class="line">	&#123;</div><div class="line">		node temp=q.front();</div><div class="line">		q.pop();</div><div class="line">		<span class="keyword">int</span> x=temp.u;</div><div class="line">		<span class="keyword">int</span> dd=temp.d;</div><div class="line">		<span class="keyword">if</span>(dd&gt;=d)<span class="keyword">continue</span>;</div><div class="line">		<span class="keyword">int</span> l=g[x].size();</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;l;i++)</div><div class="line">		&#123;</div><div class="line">			<span class="keyword">int</span> v=g[x][i];</div><div class="line">			<span class="keyword">if</span>(vis[v]==<span class="number">1</span>)<span class="keyword">continue</span>;</div><div class="line">			vis[v]=<span class="number">1</span>;</div><div class="line">			node nn=(node)&#123;v,dd+<span class="number">1</span>&#125;;</div><div class="line">			f[make_pair(min(x,v),max(x,v))]=<span class="number">1</span>;</div><div class="line">			cnt--;</div><div class="line">			q.push(nn);</div><div class="line">		&#125;</div><div class="line">	 &#125;</div><div class="line">	 <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,cnt);</div><div class="line">	 <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n<span class="number">-1</span>;i++)</div><div class="line">	 &#123;</div><div class="line">	 	<span class="keyword">int</span> u=edge[i][<span class="number">1</span>];</div><div class="line">	 	<span class="keyword">int</span> v=edge[i][<span class="number">2</span>];</div><div class="line">	 	<span class="keyword">if</span>(f[make_pair(min(u,v),max(u,v))]==<span class="number">0</span>)<span class="built_in">printf</span>(<span class="string">"%d "</span>,i);</div><div class="line">	  &#125; </div><div class="line">	  <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line"> &#125; </div><div class="line"></div></pre></td></tr></table></figure>
+      
+    </div>
     
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2016-07-29T02:22:51.000Z"><a href="/2016/07/29/coding-ceshi/">2016-07-29</a></time>
-            
-              <h1 class="title"><a href="/2016/07/29/coding-ceshi/">第一篇代码测试</a></h1>
-            
-          </header>
+    <footer>
+        <div class="alignright">
+          
+          <a href="/2017/04/12/codeforces-796D-Police-Stations-多源bfs/#comment" class="comment-link">评论</a>
+          
+          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
         </div>
-      </article>
-    
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2016-07-28T18:09:40.000Z"><a href="/2016/07/29/hello-this-is-my-first-article/">2016-07-29</a></time>
-            
-              <h1 class="title"><a href="/2016/07/29/hello-this-is-my-first-article/">我的第一篇文章，开始用hexo来写Blog</a></h1>
-            
-          </header>
-        </div>
-      </article>
-    
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2016-07-28T16:39:18.901Z"><a href="/2016/07/29/hello-world/">2016-07-29</a></time>
-            
-              <h1 class="title"><a href="/2016/07/29/hello-world/">Hello World</a></h1>
-            
-          </header>
-        </div>
-      </article>
-    
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/树/">树</a>, <a href="/tags/bfs/">bfs</a>
   </div>
+
+        <!-- partial('post/share') -->
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">留言</h1>
+
+  <!-- 多说评论框 start -->
+  <div class="ds-thread" data-thread-key="post-codeforces-796D-Police-Stations-多源bfs" data-title="codeforces-796D-Police Stations-多源bfs" data-url="http://ctrasd.github.io/2017/04/12/codeforces-796D-Police-Stations-多源bfs/"></div>
+  <!-- 多说评论框 end -->
+  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+  <script type="text/javascript">
+  var duoshuoQuery = {short_name:'ctr'};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+       || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+  <!-- 多说公共JS代码 end -->
+
+</section>
+
+
 </div></div>
     <aside id="sidebar" class="alignright">
   <div class="search">
